@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/subirFichero',[FicheroController::class,"showFormFichero"] )->name("mostrar.subirFichero");
     Route::POST('/storeFichero',[FicheroController::class,"store"] )->name("crear.fichero");
+    Route::get('/eliminarFichero/{id}',[FicheroController::class,"destroy"] )->name("eliminar.fichero");
 });
 
 

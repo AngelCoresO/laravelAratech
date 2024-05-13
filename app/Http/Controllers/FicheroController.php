@@ -45,4 +45,17 @@ class FicheroController extends Controller
             return redirect()->route('volver.index');
         }
     }
+
+    public function destroy(string $id){
+        $fichero=Fichero::find($id);
+
+        if($fichero!=null && Storage::disk('public')->exists('files/'.$fichero->nombre)){
+            Storage::disk('public')->delete('files/'.$fichero->nombre);
+            $fichero->delete();
+            return redirect()->route('listar.ficheros')->with('success','Fichero eliminado correctamente.');
+        }else{
+            return redirect()->route('listar.ficheros')->with('error','Fichero no encontrado.');
+        }
+
+    }
 }
